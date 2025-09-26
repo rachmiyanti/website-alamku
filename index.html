@@ -1,164 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Alamku — Tema Alam</title>
-  <style>
-    :root{
-      --green-900: #134E4A;
-      --green-700: #0F766E;
-      --green-500: #10B981;
-      --green-200: #D1FAE5;
-      --beige: #FCF8F3;
-      --bg-gradient-start: #E6F6F1;
-      --bg-gradient-end: #EAF6FF;
-      --card-shadow: 0 8px 24px rgba(10,10,10,0.08);
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    }
-
-    /* Reset & base */
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background:linear-gradient(180deg,var(--bg-gradient-start),var(--bg-gradient-end));
-      color:var(--green-900);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-    }
-
-    /* Container */
-    .container{max-width:1100px;margin:0 auto;padding:28px}
-
-    /* Header */
-    header{
-      display:flex;align-items:center;justify-content:space-between;padding:18px 0;
-    }
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand .logo{
-      width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--green-700),var(--green-500));
-      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;box-shadow:0 6px 16px rgba(16,185,129,0.15);
-    }
-    nav a{margin-left:18px;text-decoration:none;color:var(--green-900);font-weight:600}
-    nav a:hover{color:var(--green-700)}
-
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1fr;gap:26px;align-items:center;padding:40px 0}
-    .hero-inner{padding:24px;background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.65));border-radius:18px;box-shadow:var(--card-shadow)}
-    .hero h1{font-size:36px;margin:0 0 12px}
-    .hero p{margin:0 0 18px;color:rgba(19,78,74,0.85)}
-    .cta{display:inline-block;background:var(--green-700);color:white;padding:12px 20px;border-radius:999px;text-decoration:none;font-weight:700;box-shadow:0 8px 20px rgba(15,118,110,0.18)}
-
-    .hero-visual{display:flex;justify-content:center}
-    .card-image{width:100%;max-width:460px;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px rgba(16,24,32,0.12);transform:translateY(0);transition:transform .6s cubic-bezier(.22,.9,.3,1)}
-    .card-image img{display:block;width:100%;height:auto}
-    .card-image:hover{transform:translateY(-8px)}
-
-    /* Sections */
-    section{padding:36px 0}
-    .section-title{display:flex;align-items:center;gap:10px;font-size:22px;margin-bottom:18px}
-
-    /* Gallery */
-    .grid{display:grid;grid-template-columns:repeat(1,1fr);gap:16px}
-    .grid .tile{border-radius:12px;overflow:hidden;box-shadow:var(--card-shadow);background:white}
-    .tile img{width:100%;height:220px;object-fit:cover;display:block}
-
-    /* Contact form */
-    .form-wrap{max-width:720px;margin:0 auto;background:var(--beige);padding:20px;border-radius:14px;box-shadow:var(--card-shadow)}
-    .field{display:flex;flex-direction:column;margin-bottom:12px}
-    .field label{font-weight:600;margin-bottom:6px}
-    .field input,.field textarea{padding:12px;border-radius:10px;border:1px solid rgba(19,78,74,0.08);font-size:15px}
-    .btn-send{background:var(--green-700);color:white;padding:12px 18px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
-
-    footer{padding:18px 0;text-align:center;color:var(--green-700);font-size:14px}
-
-    /* Responsive */
-    @media(min-width:760px){
-      .hero{grid-template-columns:1fr 460px}
-      .grid{grid-template-columns:repeat(3,1fr)}
-    }
-
-    /* Small animations */
-    .fade-in{opacity:0;transform:translateY(12px);animation:enter .9s forwards}
-    .fade-in.delay{animation-delay:.15s}
-    @keyframes enter{to{opacity:1;transform:none}}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alam Segar & Indah</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">A</div>
-        <div>
-          <div style="font-weight:800">Alamku</div>
-          <div style="font-size:12px;color:rgba(19,78,74,0.65)">Menjaga & Menikmati Alam</div>
-        </div>
-      </div>
-      <nav>
-        <a href="#home">Home</a>
-        <a href="#about">Tentang</a>
-        <a href="#gallery">Galeri</a>
-        <a href="#contact">Kontak</a>
-      </nav>
-    </header>
+  <header>
+    <div class="logo">🌿 Alam Lestari</div>
+    <nav>
+      <ul>
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#manfaat">Manfaat</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- Hero -->
-    <section id="home" class="hero">
-      <div class="hero-inner fade-in">
-        <h1>Selamat Datang di Alamku</h1>
-        <p>Rasakan ketenangan hijau—galeri pemandangan, cerita pelestarian, dan komunitas yang peduli lingkungan.</p>
-        <a class="cta" href="#gallery">Jelajahi Galeri</a>
-      </div>
-      <div class="hero-visual fade-in delay">
-        <div class="card-image">
-          <img src="https://source.unsplash.com/800x600/?forest,trees" alt="Pemandangan alam" />
-        </div>
-      </div>
-    </section>
+  <section id="beranda" class="hero">
+    <h1>Alam yang Segar, Indah, dan Tertata Rapi</h1>
+    <p>Alam yang hijau dan terjaga memberikan kehidupan yang lebih sehat, nyaman, serta menjadi warisan untuk generasi mendatang.</p>
+    <a href="#tentang" class="btn">Pelajari Lebih Lanjut</a>
+  </section>
 
-    <!-- About -->
-    <section id="about">
-      <div class="section-title">🌲 Tentang Kami</div>
-      <p style="max-width:900px;color:rgba(19,78,74,0.8)">Alamku hadir sebagai ruang digital untuk menginspirasi pelestarian. Kami menampilkan kisah, foto, dan panduan sederhana agar setiap orang bisa berkontribusi menjaga lingkungan di sekitarnya.</p>
-    </section>
+  <section id="tentang" class="content">
+    <h2>Tentang Alam</h2>
+    <p>
+      Alam adalah sumber kehidupan bagi manusia. Pepohonan menghasilkan oksigen yang kita hirup, 
+      air sungai mengalirkan kesegaran, dan tanah yang subur memberi hasil panen. 
+      Menjaga alam berarti menjaga kehidupan.
+    </p>
+  </section>
 
-    <!-- Gallery -->
-    <section id="gallery">
-      <div class="section-title">🏞️ Galeri Alam</div>
-      <div class="grid">
-        <div class="tile fade-in"><img src="https://source.unsplash.com/600x400/?mountain" alt="Gunung" /></div>
-        <div class="tile fade-in delay"><img src="https://source.unsplash.com/600x400/?river" alt="Sungai" /></div>
-        <div class="tile fade-in" style="animation-delay:.25s"><img src="https://source.unsplash.com/600x400/?forest" alt="Hutan" /></div>
-      </div>
-    </section>
+  <section id="manfaat" class="content">
+    <h2>Pentingnya Alam Segar</h2>
+    <ul>
+      <li>🌳 Memberikan udara bersih dan oksigen</li>
+      <li>💧 Menyediakan air yang jernih</li>
+      <li>🌸 Membuat hidup lebih indah dengan pemandangan</li>
+      <li>🍎 Menyediakan sumber pangan dan obat-obatan alami</li>
+      <li>🏞️ Menjadi tempat rekreasi dan penyegaran jiwa</li>
+    </ul>
+  </section>
 
-    <!-- Contact -->
-    <section id="contact">
-      <div class="section-title">✉️ Kontak</div>
-      <div class="form-wrap">
-        <form onsubmit="event.preventDefault();alert('Terima kasih! Pesan Anda telah terkirim.');">
-          <div class="field">
-            <label for="name">Nama</label>
-            <input id="name" type="text" placeholder="Nama Anda" required />
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" type="email" placeholder="email@domain.com" required />
-          </div>
-          <div class="field">
-            <label for="message">Pesan</label>
-            <textarea id="message" rows="5" placeholder="Tulis pesan..." required></textarea>
-          </div>
-          <button class="btn-send" type="submit">Kirim Pesan</button>
-        </form>
-      </div>
-    </section>
+  <section id="galeri" class="gallery">
+    <h2>Galeri Alam</h2>
+    <div class="images">
+      <img src="https://source.unsplash.com/400x300/?forest" alt="Hutan Hijau">
+      <img src="https://source.unsplash.com/400x300/?river" alt="Sungai Jernih">
+      <img src="https://source.unsplash.com/400x300/?mountain" alt="Gunung Indah">
+      <img src="https://source.unsplash.com/400x300/?garden" alt="Taman Asri">
+    </div>
+  </section>
 
-    <footer>
-      &copy; 2025 Alamku • Semua hak cipta dilindungi
-    </footer>
-  </div>
+  <footer>
+    <p>© 2025 Alam Lestari | Menjaga Alam untuk Kehidupan</p>
+  </footer>
 </body>
 </html>
