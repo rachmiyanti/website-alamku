@@ -1,0 +1,141 @@
+/* Reset sederhana */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f0fdf4;
+  color: #1b4332;
+}
+
+header {
+  background: #2d6a4f;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #95d5b2;
+}
+
+.hero {
+  background: url("https://source.unsplash.com/1600x600/?nature,green") no-repeat center center/cover;
+  color: #fff;
+  text-align: center;
+  padding: 6rem 2rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 6px #000;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  background: #52b788;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #40916c;
+}
+
+.content {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.content h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #2d6a4f;
+}
+
+.content p, .content ul {
+  max-width: 800px;
+  margin: auto;
+  font-size: 1.1rem;
+}
+
+.content ul {
+  list-style: none;
+  padding: 1rem;
+}
+
+.content li {
+  margin: 0.5rem 0;
+}
+
+.gallery {
+  padding: 3rem 2rem;
+  background: #d8f3dc;
+  text-align: center;
+}
+
+.gallery h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.images img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.images img:hover {
+  transform: scale(1.05);
+}
+
+footer {
+  background: #2d6a4f;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
