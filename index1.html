@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contoh: HTML terhubung ke Cloudflare Worker</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;padding:24px;background:#f6fff6}
+    .card{background:white;border-radius:12px;padding:20px;box-shadow:0 6px 18px rgba(0,0,0,0.06);max-width:760px;margin:0 auto}
+    label{display:block;margin:12px 0 6px}
+    input,textarea,button{width:100%;padding:10px;border-radius:8px;border:1px solid #dfe;}
+    pre{background:#f8f8f8;padding:12px;border-radius:8px;overflow:auto}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Contoh koneksi HTML → Cloudflare Worker</h1>
+    <p>Form di bawah akan mengirim request ke Cloudflare Worker (atau endpoint Worker Pages). Ganti <code>WORKER_URL</code> dengan URL Worker Anda.</p>
+
+    <label for="name">Nama</label>
+    <input id="name" placeholder="Nama kamu" />
+
+    <label for="message">Pesan</label>
+    <textarea id="message" rows="4" placeholder="Tulis pesan..."></textarea>
+
+    <button id="send">Kirim ke Worker</button>
+
+    <h3>Hasil</h3>
+    <pre id="output">Belum ada aksi.</pre>
+  </div>
+
+  <script>
+    // ====== CONFIG ======
+    // Ganti URL ini ke URL Worker Anda (mis. https://my-worker.YOUR-ACCOUNT.workers.dev)
+    const WORKER_URL = 'https://YOUR_WORKER_URL.workers.dev';
+
+    // Jika Worker Anda memerlukan API token atau header khusus, isi di sini.
+    // Jangan letakkan API token sensitif pada client-side pada produksi — gunakan server-side atau secret binding.
+    const EXTRA_HEADERS = {
+      // 'Authorization': 'Bearer <TOKEN_IF_YOU_HAVE_TO>',
+      // 'X-Custom-Header': 'hello'
+    };
+    // ====================
+
+    const btn = document.getElementById('send');
+    const out = document.getElementById('output');
+
+    btn.addEventListener('click', async () => {
+      const name = document.getElementById('name').value || 'Anon';
+      const message = document.getElementById('message').value || '';
+
+      out.textContent = 'Mengirim...';
+
+      try {
+        const res = await fetch(WORKER_URL + '/api/echo', {
+          method: 'POST',
+          headers: Object.assign({
+            'Content-Type': 'application/json'
+          }, EXTRA_HEADERS),
+          body: JSON.stringify({ name, message, ts: Date.now() })
+        });
+
+        // Periksa CORS / status
+        if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + res.statusText);
+
+        const data = await res.json();
+        out.textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        out.textContent = 'Error: ' + err.message;
+      }
+    });
+  </script>
+
+  <!--
+    ===== Contoh Cloudflare Worker (JavaScript) =====
+    Simpan file ini sebagai worker/index.js di Cloudflare Worker atau pada Pages Function.
+
+    addEventListener('fetch', event => {
+      event.respondWith(handle(event.request))
+    })
+
+    async function handle(request) {
+      // CORS sederhana untuk mengizinkan origin apa pun (ubah di produksi!)
+      const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type'
+      };
+
+      if (request.method === 'OPTIONS') {
+        return new Response(null, { status: 204, headers: corsHeaders })
+      }
+
+      if (request.url.endsWith('/api/echo') && request.method === 'POST') {
+        const body = await request.json().catch(() => ({}));
+        const resp = {
+          ok: true,
+          received: body,
+          msg: 'Diterima oleh Cloudflare Worker',
+          now: new Date().toISOString()
+        };
+        return new Response(JSON.stringify(resp), {
+          status: 200,
+          headers: Object.assign({ 'Content-Type': 'application/json' }, corsHeaders)
+        });
+      }
+
+      return new Response('Not found', { status: 404, headers: corsHeaders })
+    }
+
+    ==================================================
+
+    Petunjuk singkat:
+    1. Buat akun Cloudflare dan buka Dashboard -> Workers.
+    2. Buat Worker baru, tempelkan kode Worker di atas.
+    3. Deploy Worker. Salin URL publiknya.
+    4. Ganti WORKER_URL di file HTML ini.
+    5. Jika ingin menyembunyikan kredensial, gunakan Secret Bindings di Worker (Workers KV / Secrets) dan panggil dari server-side.
+
+    Keamanan:
+    - Jangan menaruh API key rahasia di HTML client. Gunakan Worker atau server untuk memanggil API pihak ketiga dan simpan secret pada binding.
+    - Batasi Access-Control-Allow-Origin ke domain Anda di produksi.
+  -->
+</body>
+</html>
